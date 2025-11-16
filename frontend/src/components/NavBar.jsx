@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { createPortal } from "react-dom";
 import logo from "../assets/Sin Filtros Logo.png";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const NavBar = ({ authStatus, onLogout }) => {
   const navigate = useNavigate();
@@ -13,11 +14,12 @@ export const NavBar = ({ authStatus, onLogout }) => {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      const response = await fetch(API_ENDPOINTS.logout, {
+      const response = await fetchWithAuth(API_ENDPOINTS.logout, {
         method: "POST",
-        credentials: "include",
       });
       if (response.ok) {
+        // Limpiar localStorage
+        localStorage.removeItem("auth_token");
         setIsLogoutModalOpen(false);
         onLogout();
         navigate("/login");

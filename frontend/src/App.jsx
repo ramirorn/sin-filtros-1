@@ -13,17 +13,33 @@ export const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // Intentar obtener el token de localStorage como respaldo para iOS
+        const token = localStorage.getItem("auth_token");
+
+        const headers = {
+          "Content-Type": "application/json",
+        };
+
+        // Si hay token en localStorage, enviarlo en headers
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`;
+        }
+
         const res = await fetch(API_ENDPOINTS.profile, {
           credentials: "include",
+          headers,
         });
 
         if (res.ok) {
           setAuthStatus("authenticated");
         } else {
+          // Si falla, limpiar localStorage
+          localStorage.removeItem("auth_token");
           setAuthStatus("unauthenticated");
         }
       } catch (err) {
         console.log(err);
+        localStorage.removeItem("auth_token");
         setAuthStatus("unauthenticated");
       }
     };
@@ -36,6 +52,8 @@ export const App = () => {
   };
 
   const handleLogout = () => {
+    // Limpiar localStorage al cerrar sesión
+    localStorage.removeItem("auth_token");
     setAuthStatus("unauthenticated");
   };
 

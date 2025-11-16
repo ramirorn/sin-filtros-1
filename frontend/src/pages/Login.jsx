@@ -30,6 +30,10 @@ export const Login = ({ onLoginSucces }) => {
       });
       const data = await response.json();
       if (response.ok) {
+        // Guardar token en localStorage como respaldo para iOS
+        if (data.token) {
+          localStorage.setItem("auth_token", data.token);
+        }
         onLoginSucces();
       } else {
         setError("Credenciales invalidas");

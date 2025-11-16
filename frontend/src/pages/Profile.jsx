@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { Loading } from "../components/Loading";
 import { useForm } from "../hooks/useForm";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const Profile = ({ onLogout }) => {
   const [profile, setProfile] = useState(null);
@@ -27,9 +28,7 @@ export const Profile = ({ onLogout }) => {
       setIsLoading(true);
       setError("");
       try {
-        const profileResponse = await fetch(API_ENDPOINTS.profile, {
-          credentials: "include",
-        });
+        const profileResponse = await fetchWithAuth(API_ENDPOINTS.profile);
         if (!profileResponse.ok) {
           throw new Error("No se pudo obtener el perfil");
         }
@@ -59,13 +58,14 @@ export const Profile = ({ onLogout }) => {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      const logoutResponse = await fetch(API_ENDPOINTS.logout, {
+      const logoutResponse = await fetchWithAuth(API_ENDPOINTS.logout, {
         method: "POST",
-        credentials: "include",
       });
       if (!logoutResponse.ok) {
         throw new Error("No se pudo cerrar la sesión");
       }
+      // Limpiar localStorage
+      localStorage.removeItem("auth_token");
       setIsLogoutModalOpen(false);
       onLogout();
     } catch (err) {
@@ -126,9 +126,8 @@ export const Profile = ({ onLogout }) => {
         formData.append("profile_picture", selectedImage);
       }
 
-      const response = await fetch(API_ENDPOINTS.profile, {
+      const response = await fetchWithAuth(API_ENDPOINTS.profile, {
         method: "PUT",
-        credentials: "include",
         body: formData,
       });
 
