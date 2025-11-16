@@ -53,8 +53,10 @@ export const login = async (req, res) => {
         // Enviar el token en una cookie
         res.cookie("token", token, {
             httpOnly: true,
-            maxAge: 1000 * 60 * 60,
-        }); // 1 hora
+            maxAge: 1000 * 60 * 60, // 1 hora
+            secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Permitir cross-origin en producción
+        });
 
         res.status(200).json({ ok: true, message: "Login exitoso", token });
     } catch (err) {
@@ -67,7 +69,11 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
     try {
         // Eliminar la cookie del token
-        res.clearCookie("token");
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        });
 
         res.status(200).json({
             ok: true,
