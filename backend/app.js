@@ -7,7 +7,11 @@ import { routes } from './routes/index.js';
 import cors from 'cors';
 
 // Configuración de CORS
-const allowedOrigins = process.env.FRONTEND_URL;
+const allowedOrigins = [
+	'http://localhost:5173',
+	'http://localhost:3000',
+	process.env.FRONTEND_URL
+].filter(Boolean);
 
 // Configuraciones
 const app = express();
