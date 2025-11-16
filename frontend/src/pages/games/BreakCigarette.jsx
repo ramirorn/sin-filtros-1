@@ -123,7 +123,7 @@ export const BreakCigarette = () => {
               </div>
 
               {/* Game Area */}
-              <div className="relative bg-gradient-to-b from-blue-900/30 to-blue-800/30 rounded-2xl h-96 overflow-hidden border-2 border-white/10">
+              <div className="relative bg-gradient-to-b from-blue-900/30 to-blue-800/30 rounded-2xl h-72 sm:h-96 overflow-hidden border-2 border-white/10">
                 {cigarettes.map((cig) => (
                   <button
                     key={cig.id}

@@ -49,9 +49,9 @@ export const Login = ({ onLoginSucces }) => {
       <div className="w-full max-w-md">
         <form
           onSubmit={handleSubmit}
-          className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-8"
+          className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-8"
         >
-          <h2 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent text-center mb-6 sm:mb-8">
             Iniciar Sesión
           </h2>
 

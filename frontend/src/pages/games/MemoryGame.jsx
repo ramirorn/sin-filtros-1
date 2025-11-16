@@ -99,12 +99,12 @@ export const MemoryGame = () => {
               </div>
 
               {/* Game Grid */}
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-2 sm:gap-4">
                 {cards.map((card) => (
                   <button
                     key={card.id}
                     onClick={() => handleCardClick(card.id)}
-                    className={`aspect-square rounded-2xl text-5xl font-bold transition-all duration-300 ${
+                    className={`aspect-square rounded-xl sm:rounded-2xl text-3xl sm:text-5xl font-bold transition-all duration-300 ${
                       flipped.includes(card.id) || matched.includes(card.id)
                         ? "bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg"
                         : "bg-purple-500 hover:bg-purple-600 shadow-lg shadow-purple-500/30"

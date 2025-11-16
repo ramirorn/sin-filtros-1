@@ -135,21 +135,21 @@ export const Education = () => {
     <div className="min-h-screen bg-slate-900">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-        <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-8 overflow-hidden">
+        <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
           <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-cyan-500/30">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl shadow-lg shadow-cyan-500/30">
                 📚
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-50">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-50">
                   Centro Educativo
                 </h1>
               </div>
             </div>
-            <p className="text-lg text-slate-400 max-w-3xl">
+            <p className="text-base sm:text-lg text-slate-400 max-w-3xl">
               Recursos, información y herramientas para apoyarte en tu camino
               hacia una vida libre de tabaco
             </p>
@@ -160,10 +160,10 @@ export const Education = () => {
       {/* Tabs */}
       <div className="bg-slate-800/50 backdrop-blur-lg shadow-xl sticky top-0 z-10 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-8 overflow-x-auto">
+          <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-hide">
             <button
               onClick={() => setActiveTab("videos")}
-              className={`py-4 px-6 font-bold whitespace-nowrap border-b-2 transition ${
+              className={`py-3 sm:py-4 px-4 sm:px-6 font-bold whitespace-nowrap border-b-2 transition text-sm sm:text-base ${
                 activeTab === "videos"
                   ? "border-cyan-400 text-cyan-400"
                   : "border-transparent text-slate-400 hover:text-slate-200"
@@ -210,7 +210,7 @@ export const Education = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {videos.map((video) => (
                 <div
                   key={video.id}

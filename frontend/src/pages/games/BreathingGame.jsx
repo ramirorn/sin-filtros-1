@@ -103,16 +103,16 @@ export const BreathingGame = () => {
           {phase !== "ready" && phase !== "complete" && (
             <div className="text-center">
               {/* Círculo animado */}
-              <div className="relative w-64 h-64 mx-auto mb-6">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto mb-6">
                 <div
                   className={`absolute inset-0 ${currentConfig.color} rounded-full opacity-20 animate-pulse`}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-7xl font-bold text-slate-50 mb-2">
+                    <div className="text-5xl sm:text-7xl font-bold text-slate-50 mb-2">
                       {currentConfig.duration - count}
                     </div>
-                    <div className="text-xl font-semibold text-slate-300">
+                    <div className="text-base sm:text-xl font-semibold text-slate-300">
                       {currentConfig.text}
                     </div>
                   </div>
@@ -120,17 +120,17 @@ export const BreathingGame = () => {
                 {/* Progress circle */}
                 <svg className="absolute inset-0 w-full h-full -rotate-90">
                   <circle
-                    cx="128"
-                    cy="128"
-                    r="120"
+                    cx="50%"
+                    cy="50%"
+                    r="45%"
                     fill="none"
                     stroke="#334155"
                     strokeWidth="8"
                   />
                   <circle
-                    cx="128"
-                    cy="128"
-                    r="120"
+                    cx="50%"
+                    cy="50%"
+                    r="45%"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="8"

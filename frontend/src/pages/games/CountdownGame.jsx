@@ -146,7 +146,7 @@ export const CountdownGame = () => {
               {/* Click Button */}
               <button
                 onClick={handleClick}
-                className="w-full bg-gradient-to-r from-emerald-400 to-teal-600 text-white py-20 rounded-3xl font-bold text-4xl hover:scale-105 transition-all active:scale-95 shadow-2xl shadow-emerald-500/40"
+                className="w-full bg-gradient-to-r from-emerald-400 to-teal-600 text-white py-16 sm:py-20 rounded-3xl font-bold text-3xl sm:text-4xl hover:scale-105 transition-all active:scale-95 shadow-2xl shadow-emerald-500/40"
               >
                 CLIC
               </button>

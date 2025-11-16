@@ -3,8 +3,8 @@ export const Footer = () => {
 
   return (
     <footer className="bg-linear-to-r from-slate-900 to-slate-800 text-white mt-auto border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 mb-6 sm:mb-8">
           {/* Información del Proyecto */}
           <div>
             <h3 className="text-xl font-bold mb-4 bg-linear-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
@@ -39,7 +39,7 @@ export const Footer = () => {
           </div>
 
           {/* Información Adicional */}
-          <div className="text-right md:text-left md:ml-15">
+          <div className="text-left">
             <h3 className="text-xl font-bold mb-4 bg-linear-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Contacto
             </h3>

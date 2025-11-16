@@ -57,13 +57,13 @@ export const Community = () => {
     <div className="min-h-screen bg-slate-900 py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-6 mb-6">
+        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl p-4 sm:p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent mb-2">
                 💬 Comunidad Sin Filtro
               </h1>
-              <p className="text-slate-400">
+              <p className="text-sm sm:text-base text-slate-400">
                 Comparte tu progreso, experiencias y apoya a otros en su camino
               </p>
             </div>
@@ -72,9 +72,9 @@ export const Community = () => {
           {/* Create Post Button */}
           <button
             onClick={() => setIsCreateModalOpen(true)}
-            className="w-full bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-3 px-6 rounded-full font-bold hover:scale-105 transition-all shadow-lg shadow-cyan-500/30 flex items-center justify-center gap-2"
+            className="w-full bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-3 px-4 sm:px-6 rounded-full font-bold hover:scale-105 transition-all shadow-lg shadow-cyan-500/30 flex items-center justify-center gap-2 text-sm sm:text-base"
           >
-            <span className="text-2xl">✍️</span>
+            <span className="text-xl sm:text-2xl">✍️</span>
             <span>Crear Publicación</span>
           </button>
         </div>
