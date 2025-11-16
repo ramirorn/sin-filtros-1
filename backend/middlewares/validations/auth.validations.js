@@ -28,12 +28,8 @@ export const registerValidations = [
   body("password")
     .notEmpty()
     .withMessage("La contraseña es obligatoria")
-    .isLength({ min: 8 })
-    .withMessage("La contraseña debe tener al menos 8 caracteres")
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/, "g")
-    .withMessage(
-      "La contraseña debe contener al menos una letra minúscula, una letra mayúscula y un número"
-    ),
+    .isLength({ min: 6 })
+    .withMessage("La contraseña debe tener al menos 6 caracteres"),
   body("profile.firstname")
     .notEmpty()
     .withMessage("El nombre es obligatorio")
@@ -65,11 +61,12 @@ export const updateAuthProfileValidations = [
     .withMessage("El nombre de usuario es obligatorio")
     .isLength({ min: 3, max: 20 })
     .withMessage("El nombre de usuario debe tener entre 3 y 20 caracteres")
-    .custom(async (username, {req}) => {
+    .custom(async (username, { req }) => {
       const currentIdUser = req.usuarioLogueado.id;
-      const usernameExists = await UserModel.findOne({ username: username,
-        _id: {$ne: currentIdUser}
-       });
+      const usernameExists = await UserModel.findOne({
+        username: username,
+        _id: { $ne: currentIdUser }
+      });
       if (usernameExists) {
         throw new Error("El nombre de usuario ya está en uso");
       }
