@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm } from "../hooks/useForm";
+import API_ENDPOINTS from "../config/api.js";
 
 export const EditPostModal = ({ isOpen, onClose, post, onPostUpdated }) => {
   const [loading, setLoading] = useState(false);
@@ -65,14 +66,11 @@ export const EditPostModal = ({ isOpen, onClose, post, onPostUpdated }) => {
         formData.append("images", selectedImage);
       }
 
-      const response = await fetch(
-        `http://localhost:3000/sin-filtros/posts/${post._id}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          body: formData,
-        }
-      );
+      const response = await fetch(API_ENDPOINTS.postById(post._id), {
+        method: "PUT",
+        credentials: "include",
+        body: formData,
+      });
 
       const data = await response.json();
 

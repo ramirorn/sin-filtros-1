@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { createPortal } from "react-dom";
 import logo from "../assets/Sin Filtros Logo.png";
+import API_ENDPOINTS from "../config/api.js";
 
 export const NavBar = ({ authStatus, onLogout }) => {
   const navigate = useNavigate();
@@ -12,13 +13,10 @@ export const NavBar = ({ authStatus, onLogout }) => {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      const response = await fetch(
-        "http://localhost:3000/sin-filtros/auth/logout",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(API_ENDPOINTS.logout, {
+        method: "POST",
+        credentials: "include",
+      });
       if (response.ok) {
         setIsLogoutModalOpen(false);
         onLogout();

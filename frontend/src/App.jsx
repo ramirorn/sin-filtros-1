@@ -4,6 +4,7 @@ import { Loading } from "./components/Loading";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
 import { ChatBot } from "./components/ChatBot";
+import API_ENDPOINTS from "./config/api.js";
 
 export const App = () => {
   const [authStatus, setAuthStatus] = useState("checking");
@@ -12,12 +13,9 @@ export const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:3000/sin-filtros/auth/profile",
-          {
-            credentials: "include",
-          }
-        );
+        const res = await fetch(API_ENDPOINTS.profile, {
+          credentials: "include",
+        });
 
         if (res.ok) {
           setAuthStatus("authenticated");

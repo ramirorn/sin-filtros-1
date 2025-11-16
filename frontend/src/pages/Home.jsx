@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import API_ENDPOINTS from "../config/api.js";
 
 export const Home = () => {
   const [profile, setProfile] = useState(null);
@@ -8,12 +9,9 @@ export const Home = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/sin-filtros/auth/profile",
-          {
-            credentials: "include",
-          }
-        );
+        const response = await fetch(API_ENDPOINTS.profile, {
+          credentials: "include",
+        });
         if (response.ok) {
           const data = await response.json();
           setProfile(data.profile);

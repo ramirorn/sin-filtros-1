@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useForm } from "../hooks/useForm.js";
 import { useState } from "react";
 import { Loading } from "../components/Loading.jsx";
+import API_ENDPOINTS from "../config/api.js";
 
 export const Login = ({ onLoginSucces }) => {
   const { values, handleChange, handleReset } = useForm({
@@ -19,17 +20,14 @@ export const Login = ({ onLoginSucces }) => {
     }
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://https://sin-filtros-1.onrender.com/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(values),
-        }
-      );
+      const response = await fetch(API_ENDPOINTS.login, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(values),
+      });
       const data = await response.json();
       if (response.ok) {
         onLoginSucces();

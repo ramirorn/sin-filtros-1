@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { useForm } from "../hooks/useForm.js";
 import { useState } from "react";
+import API_ENDPOINTS from "../config/api.js";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -28,25 +29,22 @@ export const Register = () => {
     }
     setLoading(true);
     try {
-      const response = await fetch(
-        "http://localhost:3000/sin-filtros/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+      const response = await fetch(API_ENDPOINTS.register, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          username: values.username,
+          email: values.email,
+          password: values.password,
+          profile: {
+            firstname: values.firstname,
+            lastname: values.lastname,
           },
-          credentials: "include",
-          body: JSON.stringify({
-            username: values.username,
-            email: values.email,
-            password: values.password,
-            profile: {
-              firstname: values.firstname,
-              lastname: values.lastname,
-            },
-          }),
-        }
-      );
+        }),
+      });
       const data = await response.json();
       if (response.ok) {
         handleReset();

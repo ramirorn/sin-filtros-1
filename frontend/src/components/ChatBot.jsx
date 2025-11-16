@@ -1,5 +1,6 @@
 import { useForm } from "../hooks/useForm";
 import { useState } from "react";
+import API_ENDPOINTS from "../config/api.js";
 
 export const ChatBot = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([]);
@@ -18,7 +19,7 @@ export const ChatBot = ({ isOpen, onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/sin-filtros/chat", {
+      const response = await fetch(API_ENDPOINTS.chat, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
