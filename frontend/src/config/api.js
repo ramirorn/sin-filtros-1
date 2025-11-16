@@ -1,11 +1,12 @@
 // Configuración de la API
-const API_URL = process.env.API_URL;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 export const API_ENDPOINTS = {
     // Auth
-    profile: `${API_URL}/auth/profile`,
-    login: `${API_URL}/auth/login`,
-    register: `${API_URL}/auth/register`,
-    logout: `${API_URL}/auth/logout`,
+    profile: `${API_URL}/sin-filtros/auth/profile`,
+    login: `${API_URL}/sin-filtros/auth/login`,
+    register: `${API_URL}/sin-filtros/auth/register`,
+    logout: `${API_URL}/sin-filtros/auth/logout`,
 
     // Posts
     posts: `${API_URL}/sin-filtros/posts`,
