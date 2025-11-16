@@ -1,6 +1,7 @@
 import { useForm } from "../hooks/useForm";
 import { useState } from "react";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const ChatBot = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([]);
@@ -19,12 +20,11 @@ export const ChatBot = ({ isOpen, onClose }) => {
     setLoading(true);
 
     try {
-      const response = await fetch(API_ENDPOINTS.chat, {
+      const response = await fetchWithAuth(API_ENDPOINTS.chat, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify({ prompt: userMessage }),
       });
 

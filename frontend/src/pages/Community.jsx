@@ -3,6 +3,7 @@ import { PostCard } from "../components/PostCard";
 import { CreatePostModal } from "../components/CreatePostModal";
 import { Loading } from "../components/Loading";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const Community = () => {
   const [posts, setPosts] = useState([]);
@@ -13,9 +14,7 @@ export const Community = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(API_ENDPOINTS.posts, {
-        credentials: "include",
-      });
+      const response = await fetchWithAuth(API_ENDPOINTS.posts);
 
       const data = await response.json();
       if (response.ok) {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "../hooks/useForm";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const CreatePostModal = ({ isOpen, onClose, onPostCreated }) => {
   const [loading, setLoading] = useState(false);
@@ -60,9 +61,8 @@ export const CreatePostModal = ({ isOpen, onClose, onPostCreated }) => {
         hasImage: !!selectedImage,
       });
 
-      const response = await fetch(API_ENDPOINTS.posts, {
+      const response = await fetchWithAuth(API_ENDPOINTS.posts, {
         method: "POST",
-        credentials: "include",
         body: formData,
       });
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm } from "../hooks/useForm";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const EditPostModal = ({ isOpen, onClose, post, onPostUpdated }) => {
   const [loading, setLoading] = useState(false);
@@ -66,9 +67,8 @@ export const EditPostModal = ({ isOpen, onClose, post, onPostUpdated }) => {
         formData.append("images", selectedImage);
       }
 
-      const response = await fetch(API_ENDPOINTS.postById(post._id), {
+      const response = await fetchWithAuth(API_ENDPOINTS.postById(post._id), {
         method: "PUT",
-        credentials: "include",
         body: formData,
       });
 

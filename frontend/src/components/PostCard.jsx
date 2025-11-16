@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { EditPostModal } from "./EditPostModal";
 import API_ENDPOINTS from "../config/api.js";
+import { fetchWithAuth } from "../utils/fetchWithAuth.js";
 
 export const PostCard = ({ post, onDelete, onUpdate }) => {
   const [likes, setLikes] = useState(post.likes || []);
@@ -22,9 +23,7 @@ export const PostCard = ({ post, onDelete, onUpdate }) => {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const response = await fetch(API_ENDPOINTS.profile, {
-          credentials: "include",
-        });
+        const response = await fetchWithAuth(API_ENDPOINTS.profile);
         if (response.ok) {
           const data = await response.json();
           setCurrentUserId(data.profile._id);
@@ -38,9 +37,8 @@ export const PostCard = ({ post, onDelete, onUpdate }) => {
 
   const handleLike = async () => {
     try {
-      const response = await fetch(API_ENDPOINTS.toggleLike(post._id), {
+      const response = await fetchWithAuth(API_ENDPOINTS.toggleLike(post._id), {
         method: "PUT",
-        credentials: "include",
       });
 
       if (response.ok) {
@@ -57,12 +55,11 @@ export const PostCard = ({ post, onDelete, onUpdate }) => {
     if (!newComment.trim()) return;
 
     try {
-      const response = await fetch(API_ENDPOINTS.addComment(post._id), {
+      const response = await fetchWithAuth(API_ENDPOINTS.addComment(post._id), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify({ text: newComment }),
       });
 
@@ -79,9 +76,8 @@ export const PostCard = ({ post, onDelete, onUpdate }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(API_ENDPOINTS.postById(post._id), {
+      const response = await fetchWithAuth(API_ENDPOINTS.postById(post._id), {
         method: "DELETE",
-        credentials: "include",
       });
 
       if (response.ok) {
